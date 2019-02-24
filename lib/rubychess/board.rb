@@ -15,7 +15,7 @@ class Board
 		grid = []
 		for i in 0..@rows-1
 			for j in 0..@columns-1
-				grid.push(Square.new(i,j))
+				grid.push(Square.new(j,i))
 			end
 		end
 		grid
