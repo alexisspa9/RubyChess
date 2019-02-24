@@ -1,8 +1,8 @@
 class Square
-	attr_accessor :assigned_piece
+	attr_accessor :value
 	attr_reader :x, :y
-	def initialize(x, y, assigned_piece=nil)
-		@x, @y, @assigned_piece = x, y, assigned_piece
+	def initialize(x, y, value=nil)
+		@x, @y, @value = x, y, value
 	end
 
 end
