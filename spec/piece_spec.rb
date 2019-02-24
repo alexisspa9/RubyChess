@@ -1,12 +1,38 @@
-require "./lib/rubychess/piece.rb"
+require './lib/piece.rb'
+RSpec.describe Piece, shared: true do
+  subject(:piece) { Piece.new(:b,2,:white,Board.new) }
+  describe "#legal_move?" do
+    let(:new_piece) {new_piece = Piece.new(:b,3,:white,subject.board) }
+    include_examples "allowed move"
+    include_examples "diagonal moves"
+    include_examples "linear moves"
+  end
 
-RSpec.describe Piece do
-	context "#initialize" do
-		it "raises an error if no arguments are passed" do
-			expect{ Piece.new }.to raise_error(ArgumentError)
-		end
-		it "initializes correct with valid inputs" do
-			expect{ Piece.new("white", "Queen") }.to_not raise_error
-		end
-	end
+  include_examples "set colour"
+  include_examples "#new"
+  include_examples "moved"
+
+  describe "#legal_moves?" do
+    let(:start) {[:a,1]}
+    let(:some_legal_moves) {[[:a,3],[:b,2]]}
+    let(:some_illegal_moves) {[:i,9]}
+    include_examples "legal moves"
+
+    it "can move back to original position" do
+      subject.move(:c,3)
+      expect(subject.legal_move?(:b,2)).to be true
+    end
+
+  end
+
+
+
+
+
+  describe "home" do
+    it "returns the home row of the piece" do
+      expect(subject.home).to eq 1
+    end
+  end
+
 end
