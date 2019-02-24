@@ -9,4 +9,24 @@ RSpec.describe Player do
 			expect{ Player.new("John", "white") }.to_not raise_error
 		end
 	end
+	before do
+		@player = Player.new("John", "white")
+	end
+	context "#name" do
+		it "returns the name" do
+			expect(@player.name).to eq("John")
+		end
+		it "can't change the name" do
+			expect{ @player.name = "George" }.to raise_error(NoMethodError)
+		end
+	end
+
+	context "#color" do
+		it "returns the color" do
+			expect(@player.color).to eq("white")
+		end
+		it "can't change the name" do
+			expect{ @player.color = "black" }.to raise_error(NoMethodError)
+		end
+	end
 end
