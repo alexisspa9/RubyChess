@@ -2,6 +2,7 @@ require './lib/game.rb'
 
 game = Game.new
 
+
 while true do
   game.board.display
   puts "It's #{game.turn.to_s}'s turn."
